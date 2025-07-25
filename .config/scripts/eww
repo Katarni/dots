@@ -1,0 +1,4 @@
+#!/bin/sh
+
+eww --restart open bar \
+

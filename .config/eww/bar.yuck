@@ -1,0 +1,71 @@
+(defwidget bar []
+    (centerbox :orientation "h"
+        (workspaces)
+        (music)
+        (stuff)
+    )
+)
+
+(defwidget workspaces []
+    (box :class "bar_workspaces" :orientation "h" :space-evenly true :halign "start" :spacing 10
+        (button :class "bar_workspace-button" :onclick "wmctrl -s 0" 1)
+        (button :class "bar_workspace-button" :onclick "wmctrl -s 1" 2)
+        (button :class "bar_workspace-button" :onclick "wmctrl -s 2" 3)
+        (button :class "bar_workspace-button" :onclick "wmctrl -s 3" 4)
+    )
+)
+
+(defwidget stuff [] 
+    (box :class "bar_stuff" :orientation "h" :space-evenly false :halign "end" :spacing 20
+        (box :class {muted == "on" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false 
+            { 
+                "Vol ${volume}"
+            }
+        )
+        (box :class {EWW_BATTERY["BAT0"].capacity > "10" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false 
+            { 
+                (EWW_BATTERY["BAT0"].status != "Discharging" ? "Chr" : "Bat") + " ${EWW_BATTERY["BAT0"].capacity}%"
+            }
+        )
+        (box :class "bar_green_box" :orientation "h" :space-evenly false 
+           time 
+        )
+    )
+)
+
+(defwidget music []
+    (box :class "bar_green_box" :orientation "h" :space-evenly false :halign "center"
+        {
+            music != "" ? "${music}" : "silence"
+        }
+    )
+)
+
+(deflisten music :initial "" 
+    "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
+) 
+
+(defpoll time :interval "30s"
+    "date '+%H:%M %a, %b %d'"
+)
+
+(defpoll volume :interval "1s"
+    "awk -F'[][]' '/Left:/ { print $2 }' <(amixer sget Master)"
+)
+
+(defpoll muted :interval "1s"
+    "awk -F'[][]' '/Left:/ { print $4 }' <(amixer sget Master)"
+)
+
+(defwindow bar 
+    :monitor 0
+    :windowtype "dock"
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "90%"
+                        :height "30px"
+                        :ahcnor "top center"
+                )
+    :reverse (struts :side "top" :distance "4%")
+    (bar)
+)
