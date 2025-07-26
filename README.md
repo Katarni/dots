@@ -5,7 +5,7 @@ note that u should change dirs (there r hiding somewere in configs)
 
 ## TODO
 - [ ] widgets
-- [ ] nvim config
+- [x] nvim config
 - [ ] kitty config
 - [ ] find normal file mngr
 - [ ] add vol ctrl in status bar
