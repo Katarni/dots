@@ -8,4 +8,4 @@ note that u should change dirs (there r hiding somewere in configs)
 - [ ] kitty config
 - [ ] find normal file mngr
 - [ ] add vol ctrl in status bar
-- [ ] add nvim config
+- [+] add nvim config
