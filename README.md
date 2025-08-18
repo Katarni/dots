@@ -1,5 +1,5 @@
-# green-dots
-dotfiles in green tone
+# dots
+dotfiles for my system
 
 note that u should change dirs (there r hiding somewere in configs)
 
