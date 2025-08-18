@@ -313,7 +313,7 @@ bindsym $mod+x exec /home/$USER/.config/scripts/lock
 default_border none
 default_floating_border none
 
-exec --no-startup-id feh --bg-fill wallpapers/fish-and-girl.jpg
+exec --no-startup-id feh --bg-fill .config/wallpapers/fish-and-girl.jpg
 exec --no-startup-id picom -b
 exec --no-startup-id /home/$USER/.config/scripts/eww
 # exec --no-startup-id sslocal -c '.config/outline/lat.json'
