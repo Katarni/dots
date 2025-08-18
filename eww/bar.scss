@@ -1,3 +1,6 @@
+$green-main-color: #395b4d;
+$green-second-color: #a44c24;
+
 .bar {
   background: rgb(0 0 0 / 30%);
   color: #fef2e4;
@@ -7,29 +10,26 @@
   font-size: 20px;
 }
 
-.bar_stuff slider {
-  all: unset;
-  color: #a44c24;
-}
-
-.bar_workspaces button:hover {
-  color: #D35D6E;
-}
-
 .bar_green_box {
-  background-color: #395b4d;
+  background-color: $green-main-color;
   padding: 7px 20px 7px 20px;
   border-radius: 10px;
 }
 
 .bar_red_box {
-  background-color: #a44c24;
+  background-color: $green-second-color;
   padding: 7px 20px 7px 20px;
   border-radius: 10px;
 }
 
-.bar_workspace-button {
-  background-color: #395b4d;
+.bar_workspace-button-green {
+  background-color: $green-main-color;
+  padding: 7px 15px 7px 15px;
+  border-radius: 10px;
+}
+
+.bar_workspace-button-red {
+  background-color: $green-second-color;
   padding: 7px 15px 7px 15px;
   border-radius: 10px;
 }

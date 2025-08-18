@@ -1,0 +1,33 @@
+(defwidget widgets []
+    (box :orientation "h" :space-evenly false
+        (music)
+    )
+)
+
+(defwidget music []
+    (box :class "music" :orientation "v"
+
+    )
+)
+
+(defpoll track-cover :intervals "1s"
+    'echo -n "/home/katarni/.mozilla/firefox/firefox-mpris/"; ls /home/katarni/.mozilla/firefox-mpris | ansi2txt'
+) ; to be honest, i just steal it
+
+(defwidget controls []
+    (centerbox :class "music_controls" :orientation "h" -space-evenly true
+
+    )
+)
+
+(defwindow widgets 
+    :monitor 0
+    :windowtype "normal"
+    :geometry (geometry :x "0%"
+                        :y "0%" 
+                        :width "70%"
+                        :height "70%"
+                        :anchor "center center"
+                )
+    (widgets)
+)  

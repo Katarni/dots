@@ -8,16 +8,22 @@
 
 (defwidget workspaces []
     (box :class "bar_workspaces" :orientation "h" :space-evenly true :halign "start" :spacing 10
-        (button :class "bar_workspace-button" :onclick "wmctrl -s 0" 1)
-        (button :class "bar_workspace-button" :onclick "wmctrl -s 1" 2)
-        (button :class "bar_workspace-button" :onclick "wmctrl -s 2" 3)
-        (button :class "bar_workspace-button" :onclick "wmctrl -s 3" 4)
+        (button :class {cur_workspace == "1" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+                :onclick "wmctrl -s 0" 1)
+        (button :class {cur_workspace == "2" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+                :onclick "wmctrl -s 1" 2)
+        (button :class {cur_workspace == "3" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+                :onclick "wmctrl -s 2" 3)
+        (button :class {cur_workspace == "4" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+                :onclick "wmctrl -s 3" 4)
+        (button :class {cur_workspace == "5" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+                :onclick "wmctrl -s 4" 5)
     )
 )
 
 (defwidget stuff [] 
     (box :class "bar_stuff" :orientation "h" :space-evenly false :halign "end" :spacing 20
-        (box :class {muted == "on" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false 
+        (button :class {muted == "on" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
             { 
                 "Vol ${volume}"
             }
@@ -55,6 +61,10 @@
 
 (defpoll muted :interval "1s"
     "awk -F'[][]' '/Left:/ { print $4 }' <(amixer sget Master)"
+)
+
+(defpoll cur_workspace :interval "1s"
+    "awk '/*/ { print $9 }' <(wmctrl -d)"
 )
 
 (defwindow bar 
