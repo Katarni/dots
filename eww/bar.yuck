@@ -23,6 +23,16 @@
 
 (defwidget stuff [] 
     (box :class "bar_stuff" :orientation "h" :space-evenly false :halign "end" :spacing 20
+        (box :class "bar_green_box" :orientation "h" :space-evenly false :visible { b_con == "Device" ? true : false }
+            {
+                "󰂯"
+            }
+        )
+        (box :class "bar_green_box" :orientation "h" :space-evenly false :visible { w_con == "connected" ? true : false }
+            {
+                ""
+            }
+        )
         (button :class {muted == "on" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
             { 
                 "Vol ${volume}"
@@ -57,6 +67,14 @@
 
 (defpoll volume :interval "1s"
     "awk -F'[][]' '/Left:/ { print $2 }' <(amixer sget Master)"
+)
+
+(defpoll b_con :interval "1s"
+    "awk 'NR==1{ print $1 }' <(bluetoothctl devices Paired)"
+)
+
+(defpoll w_con :interval "1s"
+    "awk 'NR==2{ print $1 }' <(nmcli g)"
 )
 
 (defpoll muted :interval "1s"
