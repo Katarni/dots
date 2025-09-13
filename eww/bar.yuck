@@ -70,7 +70,7 @@
 )
 
 (defpoll b_con :interval "1s"
-    "awk 'NR==1{ print $1 }' <(bluetoothctl devices Paired)"
+    "awk 'NR==1{ print $1 }' <(bluetoothctl devices Connected)"
 )
 
 (defpoll w_con :interval "1s"
