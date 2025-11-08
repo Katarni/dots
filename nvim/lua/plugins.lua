@@ -73,4 +73,16 @@ require("lazy").setup({
         opts = {}
     },
     "mason-org/mason-lspconfig.nvim",
+    { 
+        "nvim-treesitter/nvim-treesitter",
+
+        branch = 'master',
+        lazy = false,
+        build = ":TSUpdate",
+
+
+        opts = {
+            highlight = { enable = true },
+        },
+    },
 })

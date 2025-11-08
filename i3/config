@@ -53,7 +53,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 
-bindsym $mod+Shift+S exec --no-startup-id maim "/home/$USER/Downloads/$(date +"%m.%d %H:%M").png"
+bindsym $mod+Shift+S exec --no-startup-id maim "/home/$USER/screenshots/$(date +"%m.%d %H:%M").png"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -323,4 +323,3 @@ default_floating_border none
 exec --no-startup-id feh --bg-fill .config/wallpapers/fish-and-girl.jpg
 exec --no-startup-id picom -b
 exec --no-startup-id .config/scripts/eww
-# exec --no-startup-id sslocal -c '.config/outline/lat.json'

@@ -8,3 +8,7 @@ require("mason-lspconfig").setup({
     automatic_enable = true
 })
 
+require("nvim-treesitter.configs").setup({
+    highlight = { enable = true },
+})
+
