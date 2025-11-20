@@ -53,7 +53,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 
-bindsym $mod+Shift+S exec --no-startup-id maim "/home/$USER/screenshots/$(date +"%m.%d %H:%M").png"
+bindsym $mod+Shift+S exec --no-startup-id maim "/home/$USER/screenshots/$(date +"%Y.%m.%d %H:%M:%S").png"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
