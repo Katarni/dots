@@ -10,26 +10,20 @@ $green-second-color: #a44c24;
   font-size: 22px;
 }
 
-.bar_green_box {
+.main_clr {
   background-color: $green-main-color;
+}
+
+.snd_clr {
+  background-color: $green-second-color;
+}
+
+.bar_box {
   padding: 8px 20px 8px 20px;
   border-radius: 10px;
 }
 
-.bar_red_box {
-  background-color: $green-second-color;
-  padding: 8px 20px 8px 20px;
-  border-radius: 10px;
-}
-
-.bar_workspace-button-green {
-  background-color: $green-main-color;
-  padding: 8px 15px 8px 15px;
-  border-radius: 10px;
-}
-
-.bar_workspace-button-red {
-  background-color: $green-second-color;
+.bar_workspace-button {
   padding: 8px 15px 8px 15px;
   border-radius: 10px;
 }

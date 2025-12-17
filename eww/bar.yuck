@@ -8,49 +8,49 @@
 
 (defwidget workspaces []
     (box :class "bar_workspaces" :orientation "h" :space-evenly true :halign "start" :spacing 10
-        (button :class {cur_workspace == "1" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+        (button :class {cur_workspace == "1" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
                 :onclick "wmctrl -s 0" 1)
-        (button :class {cur_workspace == "2" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+        (button :class {cur_workspace == "2" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
                 :onclick "wmctrl -s 1" 2)
-        (button :class {cur_workspace == "3" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+        (button :class {cur_workspace == "3" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
                 :onclick "wmctrl -s 2" 3)
-        (button :class {cur_workspace == "4" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+        (button :class {cur_workspace == "4" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
                 :onclick "wmctrl -s 3" 4)
-        (button :class {cur_workspace == "5" ? "bar_workspace-button-red" : "bar_workspace-button-green"} 
+        (button :class {cur_workspace == "5" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
                 :onclick "wmctrl -s 4" 5)
     )
 )
 
 (defwidget stuff [] 
     (box :class "bar_stuff" :orientation "h" :space-evenly false :halign "end" :spacing 20
-        (box :class "bar_green_box" :orientation "h" :space-evenly false :visible { b_con == "Device" ? true : false }
+        (box :class "bar_box main_clr" :orientation "h" :space-evenly false :visible { b_con == "Device" ? true : false }
             {
                 "󰂯"
             }
         )
-        (box :class "bar_green_box" :orientation "h" :space-evenly false :visible { w_con == "connected" ? true : false }
+        (box :class "bar_box main_clr" :orientation "h" :space-evenly false :visible { w_con == "connected" ? true : false }
             {
                 ""
             }
         )
-        (button :class {muted == "on" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        (button :class {muted == "on" ? "bar_box main_clr" : "bar_box snd_clr"} :orientation "h" :space-evenly false :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
             { 
                 "Vol ${volume}"
             }
         )
-        (box :class {EWW_BATTERY["BAT0"].capacity > "10" ? "bar_green_box" : "bar_red_box"} :orientation "h" :space-evenly false 
+        (box :class {EWW_BATTERY["BAT0"].capacity > "10" ? "bar_box main_clr" : "bar_box snd_clr"} :orientation "h" :space-evenly false 
             { 
                 (EWW_BATTERY["BAT0"].status != "Discharging" ? "Chr" : "Bat") + " ${EWW_BATTERY["BAT0"].capacity}%"
             }
         )
-        (box :class "bar_green_box" :orientation "h" :space-evenly false 
+        (box :class "bar_box main_clr" :orientation "h" :space-evenly false 
            time 
         )
     )
 )
 
 (defwidget music []
-    (box :class "bar_green_box" :orientation "h" :space-evenly false :halign "center"
+    (box :class "bar_box main_clr" :orientation "h" :space-evenly false :halign "center"
         {
             music != "" ? "${music}" : "silence"
         }

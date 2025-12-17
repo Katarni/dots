@@ -50,6 +50,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +2%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 2%-
 
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 
