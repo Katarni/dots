@@ -324,6 +324,6 @@ bindsym $mod+x exec /home/$USER/.config/scripts/lock
 default_border none
 default_floating_border none
 
-exec --no-startup-id feh --bg-fill .config/wallpapers/fish-and-girl.jpg
+exec --no-startup-id feh --bg-fill .config/wallpapers/nf/CLOUDS.jpg
 exec --no-startup-id picom -b
 exec --no-startup-id .config/scripts/eww
