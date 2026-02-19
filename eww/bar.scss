@@ -1,7 +1,10 @@
 $green-main-color: #395b4d;
 $green-second-color: #a44c24;
 
-.bar {
+$clouds-main-color: #778b92;
+$clouds-second-color: #364b5e;
+
+.main_bar {
   background: rgb(0 0 0 / 30%);
   color: #fef2e4;
   padding: 10px;
@@ -23,7 +26,11 @@ $green-second-color: #a44c24;
   border-radius: 10px;
 }
 
-.bar_workspace-button {
+.bar_workspace_button {
   padding: 8px 15px 8px 15px;
   border-radius: 10px;
+}
+
+.player_box {
+  border-width: 0px;
 }

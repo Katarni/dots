@@ -1,5 +1,18 @@
+(defwindow bar 
+    :monitor 0
+    :windowtype "dock"
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "90%"
+                        :height "30px"
+                        :ahcnor "top center"
+                )
+    :reverse (struts :side "top" :distance "4%")
+    (bar)
+)
+
 (defwidget bar []
-    (centerbox :orientation "h"
+    (centerbox :orientation "h" :class "main_bar"
         (workspaces)
         (music)
         (stuff)
@@ -8,22 +21,22 @@
 
 (defwidget workspaces []
     (box :class "bar_workspaces" :orientation "h" :space-evenly true :halign "start" :spacing 10
-        (button :class {cur_workspace == "1" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
+        (button :class {cur_workspace == "1" ? "bar_workspace_button snd_clr" : "bar_workspace_button main_clr"}
                 :onclick "wmctrl -s 0" 1)
-        (button :class {cur_workspace == "2" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
+        (button :class {cur_workspace == "2" ? "bar_workspace_button snd_clr" : "bar_workspace_button main_clr"}
                 :onclick "wmctrl -s 1" 2)
-        (button :class {cur_workspace == "3" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
+        (button :class {cur_workspace == "3" ? "bar_workspace_button snd_clr" : "bar_workspace_button main_clr"}
                 :onclick "wmctrl -s 2" 3)
-        (button :class {cur_workspace == "4" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
+        (button :class {cur_workspace == "4" ? "bar_workspace_button snd_clr" : "bar_workspace_button main_clr"}
                 :onclick "wmctrl -s 3" 4)
-        (button :class {cur_workspace == "5" ? "bar_workspace-button snd_clr" : "bar_workspace-button main_clr"}
+        (button :class {cur_workspace == "5" ? "bar_workspace_button snd_clr" : "bar_workspace_button main_clr"}
                 :onclick "wmctrl -s 4" 5)
     )
 )
 
 (defwidget stuff [] 
     (box :class "bar_stuff" :orientation "h" :space-evenly false :halign "end" :spacing 20
-        (box :class "bar_box main_clr" :orientation "h" :space-evenly false :visible { b_con == "Device" ? true : false }
+        (box :class "bar_box main_clr" :orientation "h" :space-evenly false :visible { b_con != "" ? true : false }
             {
                 "󰂯"
             }
@@ -57,11 +70,19 @@
     )
 )
 
+(defwidget player []
+    (box :class "player_box" 
+        { 
+            "music"
+        }
+    )
+)
+
 (deflisten music :initial "" 
     "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true"
 ) 
 
-(defpoll time :interval "30s"
+(defpoll time :interval "10s"
     "date '+%H:%M %a, %b %d'"
 )
 
@@ -70,7 +91,7 @@
 )
 
 (defpoll b_con :interval "1s"
-    "awk 'NR==1{ print $1 }' <(bluetoothctl devices Connected)"
+    "awk 'NR==1{ print $1 }' <(hcitool con)"
 )
 
 (defpoll w_con :interval "1s"
@@ -81,19 +102,13 @@
     "awk -F'[][]' '/Left:/ { print $4 }' <(amixer sget Master)"
 )
 
+(defpoll vpn :interval "1s"
+    "awk '/sslocal/ { print $1 }' <(ps -a)"
+)
+
 (defpoll cur_workspace :interval "1s"
     "awk '/*/ { print $9 }' <(wmctrl -d)"
 )
 
-(defwindow bar 
-    :monitor 0
-    :windowtype "dock"
-    :geometry (geometry :x "0%"
-                        :y "0%"
-                        :width "90%"
-                        :height "30px"
-                        :ahcnor "top center"
-                )
-    :reverse (struts :side "top" :distance "4%")
-    (bar)
-)
+(defvar player_opened "close")
+

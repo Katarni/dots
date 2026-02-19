@@ -1,4 +1,4 @@
 #!/bin/sh
 
-eww --restart open bar \
+~/eww/target/release/eww --restart open bar \
 

@@ -1,0 +1,5 @@
+cd ~/outline_auto
+
+cargo run
+
+sslocal --config outline.json
