@@ -91,7 +91,7 @@
 )
 
 (defpoll b_con :interval "1s"
-    "awk 'NR==1{ print $1 }' <(hcitool con)"
+    "awk 'NR==2{ print $1 }' <(hcitool con)"
 )
 
 (defpoll w_con :interval "1s"
