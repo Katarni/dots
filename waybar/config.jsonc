@@ -9,23 +9,28 @@
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap"
+        //"sway/scratchpad",
         //"custom/media"
     ],
     "modules-center": [
-        //"custom/spotify"
         "hyprland/window"
     ],
     "modules-right": [
-        "mpd",
+        //"mpd",
+        //"idle_inhibitor",
         //"pulseaudio",
         "network",
         //"power-profiles-daemon",
+        //"cpu",
+        //"memory",
+        //"temperature",
         "backlight",
         //"keyboard-state",
+        //"sway/language",
         "battery",
         //"battery#bat2",
-        "clock",
-        "tray"
+        "clock"
+        //"tray",
         //"custom/power"
     ],
     // Modules configuration
@@ -46,6 +51,7 @@
     //     }
     // },
     "keyboard-state": {
+        "numlock": true,
         "capslock": true,
         "format": "{name} {icon}",
         "format-icons": {
@@ -56,6 +62,13 @@
     "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    //"hyprland/scratchpad": {
+    //    "format": "{icon} {count}",
+    //    "show-empty": false,
+    //    "format-icons": ["", ""],
+    //    "tooltip": true,
+    //    "tooltip-format": "{app}: {title}"
+    //},
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -82,6 +95,13 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10,
@@ -94,6 +114,21 @@
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -131,19 +166,19 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "wifi",
-        "format-ethernet": "ethernet",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "disconnected",
+        "format-wifi": "",
+        "format-ethernet": "",
+        //"tooltip-format": "{ifname} via {gwaddr} ",
+        //"format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "{icon} {format_source}",
-        "format-muted": "{format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -181,12 +216,4 @@
 			"hibernate": "systemctl hibernate"
 		}
     }
-    //"custom/spotify": {
-        //"exec": "/usr/bin/python3 ~/.config/scripts/waybar-mediaplayer.py --player spotify",
-        //"format": "{}",
-        //"return-type": "json",
-        //"on-click": "playerctl play-pause",
-        //"on-scroll-up": "playerctl next",
-        //"on-scroll-down": "playerctl previous"
-    //}
 }
